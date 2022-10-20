@@ -3,7 +3,6 @@ package controller;
 
 
 import javafx.scene.Node;
-import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.layout.AnchorPane;
@@ -16,17 +15,21 @@ public class GameController {
 
 	private static final int COLS = 10, ROWS = 10;
     private GridPane grid;
+    
 
 	
 	private Pane makeGrid() {
 
         grid = new GridPane();
         for(int rowIndex = 0; rowIndex < ROWS ; rowIndex++) {
+        	int r = rowIndex;
             //an array to hold buttons of one row
             Node[] nodes = new Node[COLS];
             for(int colIndex = 0; colIndex < COLS ; colIndex++) {
-                Button node= new Button(rowIndex+""+colIndex);
-                node.setOnAction(e->buttonCliked(node)); //add action listener
+            	int c = colIndex;
+                Button node = new Button("");
+
+                node.setOnAction(e->buttonCliked(node, r, c)); //add action listener
                 nodes[colIndex]= node;
             }
             grid.addRow(rowIndex, nodes);
@@ -34,9 +37,12 @@ public class GameController {
         return grid;
     }
 	
-	private void buttonCliked(Button button) {
+	private void buttonCliked(Button button, int row, int col) {
 
-        System.out.println(button.getText());
+		
+		
+        System.out.println(""+button.getText()+" "+row+ col);
+        
 
     }
 
